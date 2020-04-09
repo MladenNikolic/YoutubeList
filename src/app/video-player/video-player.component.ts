@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MatDialog} from '@angular/material';
 import { ConfirmComponent } from '../confirm/confirm.component';
 import { Router } from '@angular/router';
+import { AddVideoFormComponent} from '../add-video-form/add-video-form.component';
 
 @Component({
   selector: 'app-video-player',
@@ -38,6 +39,18 @@ export class VideoPlayerComponent implements OnInit {
         this.videoService.deleteVideo(this.videoID);
         this.router.navigate(['/']);
       } else if (data === 2) {
+      }
+    });
+  }
+
+  editDialog(id: number): void {
+    const dialogRef = this.dialog.open(AddVideoFormComponent, {data: id} );
+    dialogRef.afterClosed().subscribe(data => {
+      if (data) {
+        this.videoService.deleteVideo(id);
+        data.ID = this.videoID;
+        this.videoService.setVideo(data);
+        this.currentVideo = this.videoService.getVideo(this.videoID);
       }
     });
   }

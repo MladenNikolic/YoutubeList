@@ -18,17 +18,16 @@
             <mat-label>Description</mat-label>
             <input matInput class="inputs" formControlName="description">
         </mat-form-field>
+        <div class="smallvideoplayer" *ngIf="video === 1">
+            <iframe 
+                width="560" 
+                height="315" 
+                [src]="safeURL" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen></iframe>
+        </div>    
         <button mat-raised-button type="submit" [disabled]="!videoForm.valid">Submit</button>
     </form>
-
-    <div class="smallvideoplayer" *ngIf="video === 1">
-        <iframe 
-            width="560" 
-            height="315" 
-            [src]="safeURL" 
-            frameborder="0" 
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen></iframe>
-    </div>
 
 </div>
