@@ -1,0 +1,31 @@
+mat-card{
+    width: 94%;
+    margin: 0 auto;
+    margin-top: 10px;
+
+    .description{
+        margin-left: 20px;
+        margin-top: 40px;
+    }
+
+    mat-card-title{
+        margin-top: 10px;
+    }
+
+    .back{
+        width: 10%;
+    }
+
+    .center{
+        margin-left: 10%;
+    }
+
+    .centerplus{
+        margin-left: 10%;
+        margin-right: 20%;
+    }
+
+    .flex{
+        display: flex;
+    }
+}

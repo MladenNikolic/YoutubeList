@@ -1,0 +1,48 @@
+<div routerLink="home"></div>
+    <button mat-raised-button class="addbutton" (click)="openDialog()">Add video</button>
+    <br>
+    
+    <mat-table #table [dataSource]="dataSource" class="mat-elevation-z8">
+    
+      <ng-container matColumnDef="videoname">
+        <mat-header-cell *matHeaderCellDef>Video name</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.videoname}}</mat-cell>
+      </ng-container>
+    
+      <ng-container matColumnDef="author">
+        <mat-header-cell *matHeaderCellDef>Author</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.author}}</mat-cell>
+      </ng-container>
+    
+      <ng-container matColumnDef="url">
+        <mat-header-cell *matHeaderCellDef>URL</mat-header-cell>
+        <mat-cell *matCellDef="let element" class="url"> {{element.url}}</mat-cell>
+      </ng-container>
+    
+      <ng-container matColumnDef="description">
+        <mat-header-cell *matHeaderCellDef>Description</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.description}}</mat-cell>
+      </ng-container>
+    
+      <ng-container matColumnDef="edit">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let element"><mat-icon class="actions" (click)="editDialog(element.ID)">edit</mat-icon></mat-cell>
+      </ng-container>
+    
+      <ng-container matColumnDef="delete">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let element"><mat-icon class="actions" (click)="deleteVideo(element.ID)">delete</mat-icon></mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="play">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let element"><mat-icon class="actions" (click)="playVideo(element)"><mat-icon>arrow_right</mat-icon></mat-icon></mat-cell>
+      </ng-container>
+    
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+  
+    <div class="messageDIV" *ngIf="dataSource.length === 0">
+      <h3 class="message">Videos not found.</h3>
+    </div>
