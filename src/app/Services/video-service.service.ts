@@ -1,15 +1,13 @@
 import { Injectable } from '@angular/core';
 import { MatDialog} from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ConfirmComponent } from './confirm/confirm.component';
-import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VideoServiceService {
   videoList = JSON.parse(localStorage.getItem('videos') || '[]');
-  safeURL2: any;
+  safeURL2: string;
   safeURL: any;
 
   constructor(public dialog: MatDialog, private sanitizer: DomSanitizer) { }

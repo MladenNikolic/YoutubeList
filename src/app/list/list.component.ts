@@ -2,18 +2,11 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog} from '@angular/material';
 import { AddVideoFormComponent} from '../add-video-form/add-video-form.component';
 import { ConfirmComponent } from '../confirm/confirm.component';
-import { VideoServiceService } from '../video-service.service';
+import { VideoServiceService } from '../Services/video-service.service';
 import { Router } from '@angular/router';
+import { VideoInterface } from '../Interfaces/Interface';
 
-export interface PeriodicElement {
-  videoname: string;
-  url: string;
-  author: string;
-  description: string;
-  ID: number;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [];
+const ELEMENT_DATA: VideoInterface[] = [];
 
 @Component({
   selector: 'app-list',
@@ -24,8 +17,8 @@ const ELEMENT_DATA: PeriodicElement[] = [];
 export class ListComponent implements OnInit {
   @ViewChild('table', { static: true }) table: { renderRows: () => void; };
   title = 'Zadatak';
-  index = Math.floor((Math.random() * 1000) + 1);
-  dataSource = [];
+  index: number = Math.floor((Math.random() * 1000) + 1);
+  dataSource: VideoInterface[] = [];
 
   constructor(
     public dialog: MatDialog,
@@ -62,7 +55,6 @@ export class ListComponent implements OnInit {
     });
   }
 
-
   deleteVideo(id: number): void {
     const dialogRef = this.dialog.open(ConfirmComponent);
     dialogRef.afterClosed().subscribe(data => {
@@ -79,5 +71,4 @@ export class ListComponent implements OnInit {
   playVideo(element): void {
     this.router.navigate(['video', element.ID]);
   }
-
 }

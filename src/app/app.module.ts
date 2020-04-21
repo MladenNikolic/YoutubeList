@@ -39,7 +39,7 @@ import {
 import { AddVideoFormComponent } from './add-video-form/add-video-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ConfirmComponent } from './confirm/confirm.component';
-import { VideoServiceService } from './video-service.service';
+import { VideoServiceService } from './Services/video-service.service';
 import { VideoPlayerComponent } from './video-player/video-player.component';
 import { ListComponent } from './list/list.component';
 
