@@ -1,7 +1,8 @@
 import { Component, OnInit, Inject} from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import {  MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { VideoServiceService } from '../video-service.service';
+import { VideoServiceService } from '../Services/video-service.service';
+import { VideoInterface } from '../Interfaces/Interface';
 
 @Component({
   selector: 'app-add-video-form',
@@ -14,21 +15,24 @@ import { VideoServiceService } from '../video-service.service';
 export class AddVideoFormComponent implements OnInit {
   videoForm: FormGroup;
   video: number;
-  safeURL: number;
+  safeURL: string;
 
   constructor(
     public dialogRef: MatDialogRef<AddVideoFormComponent>,
+    public formBuilder: FormBuilder,
     private videoService: VideoServiceService,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
+    @Inject(MAT_DIALOG_DATA) public data: number) { }
 
   ngOnInit() {
-    const currentVideo = this.videoService.getVideo(this.data);
-    this.videoForm = new FormGroup({
-      videoname : new FormControl(currentVideo ? currentVideo.videoname : '', Validators.required),
-      url : new FormControl(currentVideo ? currentVideo.url : '', Validators.required),
-      author : new FormControl(currentVideo ? currentVideo.author : '', Validators.required),
-      description : new FormControl(currentVideo ? currentVideo.description : '', Validators.required),
+    const currentVideo: VideoInterface = this.videoService.getVideo(this.data);
+
+    this.videoForm = this.formBuilder.group({
+      videoname: [currentVideo ? currentVideo.videoName : '', Validators.required],
+      url: [currentVideo ? currentVideo.url : '', Validators.required],
+      author: [currentVideo ? currentVideo.author : '', Validators.required],
+      description: [currentVideo ? currentVideo.description : '', Validators.required]
     });
+
     if (currentVideo.url) {
       this.video = 1;
       this.safeURL = this.videoService.getURL(currentVideo.url);

@@ -5,18 +5,22 @@
         <mat-form-field appearance="outline" class="inputs">
             <mat-label>Video name</mat-label>
             <input matInput class="inputs" formControlName="videoname">
+            <mat-error *ngIf="videoForm.invalid">This field is required.</mat-error>
         </mat-form-field> 
         <mat-form-field appearance="outline" class="inputs">
             <mat-label>URL</mat-label>
             <input matInput class="inputs" formControlName="url">
+            <mat-error *ngIf="videoForm.invalid">This field is required.</mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline" class="inputs">
             <mat-label>Author</mat-label>
             <input matInput class="inputs" formControlName="author">
+            <mat-error *ngIf="videoForm.invalid">This field is required.</mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline" class="inputs">
             <mat-label>Description</mat-label>
             <input matInput class="inputs" formControlName="description">
+            <mat-error *ngIf="videoForm.invalid">This field is required.</mat-error>
         </mat-form-field>
         <div class="smallvideoplayer" *ngIf="video === 1">
             <iframe 

@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { VideoServiceService } from '../video-service.service';
+import { VideoServiceService } from '../Services/video-service.service';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog} from '@angular/material';
 import { ConfirmComponent } from '../confirm/confirm.component';
 import { Router } from '@angular/router';
 import { AddVideoFormComponent} from '../add-video-form/add-video-form.component';
+import { VideoInterface } from '../Interfaces/Interface';
+
 
 @Component({
   selector: 'app-video-player',
@@ -12,8 +14,8 @@ import { AddVideoFormComponent} from '../add-video-form/add-video-form.component
   styleUrls: ['./video-player.component.scss']
 })
 export class VideoPlayerComponent implements OnInit {
-  currentVideo: any;
-  safeURL: any;
+  currentVideo: VideoInterface;
+  safeURL: string;
   videoID: number;
 
   constructor(
